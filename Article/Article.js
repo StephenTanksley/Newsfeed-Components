@@ -98,7 +98,43 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+*/
+// What do I need this function to do?
+/* I need the function to:
 
+1) create a div element with a class of "article"
+
+    const article = document.createElement('div');
+    article.classList.add('article');
+
+
+  2) Inside that div, create an h2 element with textContent ${title}
+
+    const title = document.createElement('h2')
+    title.textContent = data.title (not sure about formatting here)
+
+  3) Below that h2, create a <p> element with a class of ${date} that adds the date the article was published.
+
+    const date = document.createElement('p')
+    date.classList.add('date');
+
+  4) I need three separate paragraph elements mapped to ${firstParagraph} ${secondParagraph} and ${thirdParagraph}
+
+    const
+
+  5) I need to create a span element with a class of 'expandButton'
+
+
+
+  function articleMaker(data) {
+
+    let article = document.createElement('div');
+
+
+  }
+
+6) Add event listener to expandButton span. span.addEventListener('click', (e) => )
+/*
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
