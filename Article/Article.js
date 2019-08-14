@@ -121,9 +121,9 @@ const data = [{
 //   article.appendChild(date);
 
 
-//   //paragraph tags
+// //   //paragraph tags
 
-//maybe there's a way of making this more DRY? I'm going to try using a range to say "if the index is greater than or equal to 2, create a new P tag and assign the output to that P tag."
+// //maybe there's a way of making this more DRY? I'm going to try using a range to say "if the index is greater than or equal to 2, create a new P tag and assign the output to that P tag."
 
 //   const p1 = document.createElement('p');
 //   p1.textContent = array.firstParagraph;
@@ -152,6 +152,7 @@ const data = [{
 
 const articlesContainer = document.querySelector('.articles')
 
+
 function articleMaker(object) {
 
   //article container - this should contain all of the elements of the article - title, date, paragraphs.
@@ -159,52 +160,127 @@ function articleMaker(object) {
   article.classList.add('article');
   articlesContainer.appendChild(article);
 
-  //title header - this should reference the object and 
+
+  // title header - this should reference the object and add the title to the article.
   const title = document.createElement('h2');
   title.textContent = object.title;
   article.appendChild(title);
-  
-  //date element
-  
+
+  // date element
+
   const date = document.createElement('p');
   date.textContent = object.date;
   date.classList.add('date');
   article.appendChild(date);
-  
-  // const paragraphs = array.slice(data[i > 1])
-  //maybe there's a way of making this more DRY? - Try to make into an array and then map each item into a new <p> tag based on the length of the array. 
 
-  //if([i > 1] {
-  // create new <p> tag, add the text content at the current index until you run out of indexes
-  // })
-  
-  const p1 = document.createElement('p'); 
+  function paragraphMaker(object, i) {
+    if (object[i > 1] === true) {
+      const paragraph = document.createElement('p');
+      paragraph.textContent = object.map([i]);
+      article.appendChild(paragraph);
+      return paragraph;
+    }
+  }
+
+  const p1 = document.createElement('p');
   p1.textContent = object.firstParagraph;
   article.appendChild(p1);
-  
+
   const p2 = document.createElement('p');
   p2.textContent = object.secondParagraph;
   article.appendChild(p2);
-  
+
   const p3 = document.createElement('p');
   p3.textContent = object.thirdParagraph;
   article.appendChild(p3);
-  
-  //expander span
-  
-  const expander = document.createElement('span');
-  expander.classList.add('expandButton');
-  article.appendChild(expander);
-  
-  expander.addEventListener('click', (e) => {
-    e.currentTarget.classList.toggle('article-open')
-  });
 
+  const expander = document.createElement('span')
+    expander.classList.add('expandButton')
+
+    expander.addEventListener('click', (e) => {
+      event.target.classList.toggle('article-open')
+    });
+
+  return article;
 }
 
-console.log(articleMaker(data))
+data.forEach(function (item) {
+  articleMaker(item);
+});
+
+//   //- Try to make into an array and then map each item into a new <p> tag based on the length of the array. 
+
+//   //if([i > 1] {
+//   // create new <p> tag, add the text content at the current index until you run out of indexes
+//   // })
+
+
+
+//   // if (i > 0 && i < 7) {
+//   //   element.textContent = siteContent['nav'][`nav-item-${i++}`];
+//   // }
+
+
+
+//   const p1 = document.createElement('p');
+//   p1.textContent = object.firstParagraph;
+//   article.appendChild(p1);
+
+//   const p2 = document.createElement('p');
+//   p2.textContent = object.secondParagraph;
+//   article.appendChild(p2);
+
+//   const p3 = document.createElement('p');
+//   p3.textContent = object.thirdParagraph;
+//   article.appendChild(p3);
+
+//   //expander span
+
+//   const expander = document.createElement('span');
+//   expander.classList.add('expandButton');
+//   article.appendChild(expander);
+
+//   expander.addEventListener('click', (e) => {
+//     e.currentTarget.classList.toggle('article-open')
+//   });
+
+//   // article.appendChild(paragraphMaker(data));
+//   // article.appendChild(paragraphMaker(data));
+
+
+// }
+
+// articlesContainer.appendChild(articleMaker(data));
 
 //need to map over these elements
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 /* I need the function to:
