@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -100,51 +99,164 @@ const data = [
   </div>
 */
 // What do I need this function to do?
+
+
+//div container which contains the rest of the items in the NodeList.
+
+// function articleMaker(array) {
+//   const article = document.createElement('div');
+//   article.classList.add('article');
+
+//   //tite element
+
+//   const title = document.createElement('h2');
+//   title.textContent = array.title;
+//   article.appendChild(title);
+
+//   //date element
+
+//   const date = document.createElement('p');
+//   date.textContent = array.date;
+//   date.classList.add('date');
+//   article.appendChild(date);
+
+
+//   //paragraph tags
+
+//maybe there's a way of making this more DRY? I'm going to try using a range to say "if the index is greater than or equal to 2, create a new P tag and assign the output to that P tag."
+
+//   const p1 = document.createElement('p');
+//   p1.textContent = array.firstParagraph;
+//   article.appendChild(p1);
+
+//   const p2 = document.createElement('p');
+//   p2.textContent = array.secondParagraph;
+//   article.appendChild(p2);
+
+//   const p3 = document.createElement('p');
+//   p3.textContent = array.thirdParagraph;
+//   article.appendChild(p3);
+
+//   //expander span
+
+//   const expander = document.createElement('span');
+//   expander.classList.add('expandButton');
+//   article.appendChild(expander);
+
+//   expander.addEventListener('click', (e) => {
+//     e.currentTarget.classList.toggle('article-open')
+//   });
+
+//   return article;
+// }
+
+const articlesContainer = document.querySelector('.articles')
+
+function articleMaker(object) {
+
+  //article container - this should contain all of the elements of the article - title, date, paragraphs.
+  const article = document.createElement('div');
+  article.classList.add('article');
+  articlesContainer.appendChild(article);
+
+  //title header - this should reference the object and 
+  const title = document.createElement('h2');
+  title.textContent = object.title;
+  article.appendChild(title);
+  
+  //date element
+  
+  const date = document.createElement('p');
+  date.textContent = object.date;
+  date.classList.add('date');
+  article.appendChild(date);
+  
+  // const paragraphs = array.slice(data[i > 1])
+  //maybe there's a way of making this more DRY? - Try to make into an array and then map each item into a new <p> tag based on the length of the array. 
+
+  //if([i > 1] {
+  // create new <p> tag, add the text content at the current index until you run out of indexes
+  // })
+  
+  const p1 = document.createElement('p'); 
+  p1.textContent = object.firstParagraph;
+  article.appendChild(p1);
+  
+  const p2 = document.createElement('p');
+  p2.textContent = object.secondParagraph;
+  article.appendChild(p2);
+  
+  const p3 = document.createElement('p');
+  p3.textContent = object.thirdParagraph;
+  article.appendChild(p3);
+  
+  //expander span
+  
+  const expander = document.createElement('span');
+  expander.classList.add('expandButton');
+  article.appendChild(expander);
+  
+  expander.addEventListener('click', (e) => {
+    e.currentTarget.classList.toggle('article-open')
+  });
+
+}
+
+console.log(articleMaker(data))
+
+//need to map over these elements
+
+
 /* I need the function to:
 
-1) create a div element with a class of "article"
+1) create a div element with a class of "article" -> DONE
 
     const article = document.createElement('div');
     article.classList.add('article');
 
 
-  2) Inside that div, create an h2 element with textContent ${title}
+  2) Inside that div, create an h2 element with textContent ${title} -> DONE
 
     const title = document.createElement('h2')
     title.textContent = data.title (not sure about formatting here)
 
-  3) Below that h2, create a <p> element with a class of ${date} that adds the date the article was published.
+  3) Below that h2, create a <p> element with a class of ${date} that adds the date the article was published. -> DONE
 
     const date = document.createElement('p')
     date.classList.add('date');
 
   4) I need three separate paragraph elements mapped to ${firstParagraph} ${secondParagraph} and ${thirdParagraph}
 
-    const
+    const p1 = document.createElement('p') //maybe there's a way of making this more DRY?
+    const p2 = document.createElement('p')
+    const p3 = document.createElement('p')
 
   5) I need to create a span element with a class of 'expandButton'
 
-
-
-  function articleMaker(data) {
-
-    let article = document.createElement('div');
-
-
-  }
+    const expander = document.createElement('span')
+    expander.classList.add('expandButton')
 
 6) Add event listener to expandButton span. span.addEventListener('click', (e) => )
+
+ expander.addEventListener('click' (e) => {
+    event.target.classList.toggle('article-open')
+  });
+
+
+  return (function that includes everything)
 /*
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div. -> DONE
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+
+  (create a new article)
 
 */
