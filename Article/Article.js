@@ -149,7 +149,9 @@ const data = [{
 
 //   return article;
 // }
+///////////////////MY CODE//////////////////////////////////
 
+/*
 const articlesContainer = document.querySelector('.articles')
 
 
@@ -173,153 +175,83 @@ function articleMaker(object) {
   date.classList.add('date');
   article.appendChild(date);
 
-  function paragraphMaker(object, i) {
-    if (object[i > 1] === true) {
+//DRY code
+
+  function paragraphMaker(object) {
+
+    for (i = 1; i < object.length; i++){
       const paragraph = document.createElement('p');
-      paragraph.textContent = object.map([i]);
+      paragraph.textContent = object[i];
       article.appendChild(paragraph);
       return paragraph;
     }
   }
+  paragraphMaker(data);
 
-  const p1 = document.createElement('p');
-  p1.textContent = object.firstParagraph;
-  article.appendChild(p1);
-
-  const p2 = document.createElement('p');
-  p2.textContent = object.secondParagraph;
-  article.appendChild(p2);
-
-  const p3 = document.createElement('p');
-  p3.textContent = object.thirdParagraph;
-  article.appendChild(p3);
 
   const expander = document.createElement('span')
-    expander.classList.add('expandButton')
+  expander.classList.add('expandButton')
+  article.appendChild(expander);
 
-    expander.addEventListener('click', (e) => {
-      event.target.classList.toggle('article-open')
-    });
+  expander.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  });
 
   return article;
 }
 
+
+const expander = document.createElement('span')
+expander.classList.add('expandButton')
+
 data.forEach(function (item) {
   articleMaker(item);
 });
+*/
+/////////////////////////////////////////////////
 
-//   //- Try to make into an array and then map each item into a new <p> tag based on the length of the array. 
+//Chris is choosing to create all of his stuff at once rather than to do things piece by piece.
+function articles(title, date, first, second, third) {
+  const artDiv = document.createElement('div')
+  const heading = document.createElement('h2')
+  const dateP = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const expandbtn = document.createElement('span')
+  artDiv.classList.add('article')
+  firstP.classList.add('date')
+  expandbtn.classList.add('expandButton')
+  heading.textContent = title
+  dateP.textContent = date
+  firstP.textContent = first
+  secondP.textContent = second
+  thirdP.textContent = third
+  expandbtn.textContent = 'Expand'
 
-//   //if([i > 1] {
-//   // create new <p> tag, add the text content at the current index until you run out of indexes
-//   // })
+  expandbtn.addEventListener('click', () => {
+    artDiv.classList.toggle('article-open')
+  })
 
+  artDiv.appendChild(heading)
+  artDiv.appendChild(dateP)
+  artDiv.appendChild(firstP)
+  artDiv.appendChild(secondP)
+  artDiv.appendChild(thirdP)
+  artDiv.appendChild(expandbtn)
 
+  return artDiv
+}
+const articleContainer = document.querySelector('.articles')
 
-//   // if (i > 0 && i < 7) {
-//   //   element.textContent = siteContent['nav'][`nav-item-${i++}`];
-//   // }
-
-
-
-//   const p1 = document.createElement('p');
-//   p1.textContent = object.firstParagraph;
-//   article.appendChild(p1);
-
-//   const p2 = document.createElement('p');
-//   p2.textContent = object.secondParagraph;
-//   article.appendChild(p2);
-
-//   const p3 = document.createElement('p');
-//   p3.textContent = object.thirdParagraph;
-//   article.appendChild(p3);
-
-//   //expander span
-
-//   const expander = document.createElement('span');
-//   expander.classList.add('expandButton');
-//   article.appendChild(expander);
-
-//   expander.addEventListener('click', (e) => {
-//     e.currentTarget.classList.toggle('article-open')
-//   });
-
-//   // article.appendChild(paragraphMaker(data));
-//   // article.appendChild(paragraphMaker(data));
-
-
-// }
-
-// articlesContainer.appendChild(articleMaker(data));
-
-//need to map over these elements
+const artdata = data.map((e) => {
+  return articles(e.title, e.date, e.firstParagraph, e.secondParagraph, e.thirdParagraph)
+})
+artdata.forEach((e) => {
+  articleContainer.appendChild(e)
+})
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* I need the function to:
-
-1) create a div element with a class of "article" -> DONE
-
-    const article = document.createElement('div');
-    article.classList.add('article');
-
-
-  2) Inside that div, create an h2 element with textContent ${title} -> DONE
-
-    const title = document.createElement('h2')
-    title.textContent = data.title (not sure about formatting here)
-
-  3) Below that h2, create a <p> element with a class of ${date} that adds the date the article was published. -> DONE
-
-    const date = document.createElement('p')
-    date.classList.add('date');
-
-  4) I need three separate paragraph elements mapped to ${firstParagraph} ${secondParagraph} and ${thirdParagraph}
-
-    const p1 = document.createElement('p') //maybe there's a way of making this more DRY?
-    const p2 = document.createElement('p')
-    const p3 = document.createElement('p')
-
-  5) I need to create a span element with a class of 'expandButton'
-
-    const expander = document.createElement('span')
-    expander.classList.add('expandButton')
-
-6) Add event listener to expandButton span. span.addEventListener('click', (e) => )
-
- expander.addEventListener('click' (e) => {
-    event.target.classList.toggle('article-open')
-  });
-
-
-  return (function that includes everything)
 /*
   Hint: You will need to use createElement more than once here!
 
