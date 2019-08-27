@@ -1,7 +1,6 @@
 /* This is the data we will be using to create our article components */
 /* Look over this data, then proceed to line 91*/
-const data = [
-  {
+const data = [{
     title: 'Lambda School Students: "We\'re the best!"',
     date: 'Nov 5th, 2018',
     firstParagraph: `Lucas ipsum dolor sit amet ben twi'lek padmé darth darth darth moff hutt organa twi'lek. Ben amidala secura skywalker lando
@@ -98,17 +97,174 @@ const data = [
 
     <span class='expandButton'></span>
   </div>
+*/
+// What do I need this function to do?
 
+
+//div container which contains the rest of the items in the NodeList.
+
+// function articleMaker(array) {
+//   const article = document.createElement('div');
+//   article.classList.add('article');
+
+//   //tite element
+
+//   const title = document.createElement('h2');
+//   title.textContent = array.title;
+//   article.appendChild(title);
+
+//   //date element
+
+//   const date = document.createElement('p');
+//   date.textContent = array.date;
+//   date.classList.add('date');
+//   article.appendChild(date);
+
+
+// //   //paragraph tags
+
+// //maybe there's a way of making this more DRY? I'm going to try using a range to say "if the index is greater than or equal to 2, create a new P tag and assign the output to that P tag."
+
+//   const p1 = document.createElement('p');
+//   p1.textContent = array.firstParagraph;
+//   article.appendChild(p1);
+
+//   const p2 = document.createElement('p');
+//   p2.textContent = array.secondParagraph;
+//   article.appendChild(p2);
+
+//   const p3 = document.createElement('p');
+//   p3.textContent = array.thirdParagraph;
+//   article.appendChild(p3);
+
+//   //expander span
+
+//   const expander = document.createElement('span');
+//   expander.classList.add('expandButton');
+//   article.appendChild(expander);
+
+//   expander.addEventListener('click', (e) => {
+//     e.currentTarget.classList.toggle('article-open')
+//   });
+
+//   return article;
+// }
+///////////////////MY CODE//////////////////////////////////
+
+/*
+const articlesContainer = document.querySelector('.articles')
+
+
+function articleMaker(object) {
+
+  //article container - this should contain all of the elements of the article - title, date, paragraphs.
+  const article = document.createElement('div');
+  article.classList.add('article');
+  articlesContainer.appendChild(article);
+
+
+  // title header - this should reference the object and add the title to the article.
+  const title = document.createElement('h2');
+  title.textContent = object.title;
+  article.appendChild(title);
+
+  // date element
+
+  const date = document.createElement('p');
+  date.textContent = object.date;
+  date.classList.add('date');
+  article.appendChild(date);
+
+//DRY code
+
+  function paragraphMaker(object) {
+
+    for (i = 1; i < object.length; i++){
+      const paragraph = document.createElement('p');
+      paragraph.textContent = object[i];
+      article.appendChild(paragraph);
+      return paragraph;
+    }
+  }
+  paragraphMaker(data);
+
+
+  const expander = document.createElement('span')
+  expander.classList.add('expandButton')
+  article.appendChild(expander);
+
+  expander.addEventListener('click', () => {
+    article.classList.toggle('article-open')
+  });
+
+  return article;
+}
+
+
+const expander = document.createElement('span')
+expander.classList.add('expandButton')
+
+data.forEach(function (item) {
+  articleMaker(item);
+});
+*/
+/////////////////////////////////////////////////
+
+//Chris is choosing to create all of his stuff at once rather than to do things piece by piece.
+function articles(title, date, first, second, third) {
+  const artDiv = document.createElement('div')
+  const heading = document.createElement('h2')
+  const dateP = document.createElement('p')
+  const firstP = document.createElement('p')
+  const secondP = document.createElement('p')
+  const thirdP = document.createElement('p')
+  const expandbtn = document.createElement('span')
+  artDiv.classList.add('article')
+  firstP.classList.add('date')
+  expandbtn.classList.add('expandButton')
+  heading.textContent = title
+  dateP.textContent = date
+  firstP.textContent = first
+  secondP.textContent = second
+  thirdP.textContent = third
+  expandbtn.textContent = 'Expand'
+
+  expandbtn.addEventListener('click', () => {
+    artDiv.classList.toggle('article-open')
+  })
+
+  artDiv.appendChild(heading)
+  artDiv.appendChild(dateP)
+  artDiv.appendChild(firstP)
+  artDiv.appendChild(secondP)
+  artDiv.appendChild(thirdP)
+  artDiv.appendChild(expandbtn)
+
+  return artDiv
+}
+const articleContainer = document.querySelector('.articles')
+
+const artdata = data.map((e) => {
+  return articles(e.title, e.date, e.firstParagraph, e.secondParagraph, e.thirdParagraph)
+})
+artdata.forEach((e) => {
+  articleContainer.appendChild(e)
+})
+
+
+/*
   Hint: You will need to use createElement more than once here!
 
   Your function should take either an object as it's one argument, or 5 separate arguments mapping to each peice of the data object above.
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div. -> DONE
 
   Step 3: return the entire component.
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each object and add each component to the DOM as children of the 'articles' div.
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new artible
+
+  (create a new article)
 
 */
